@@ -48,33 +48,33 @@ def parse_file( fname, points, transform, screen, color ):
         elif f[i] == "scale":
             print("scale")
             pts = f[i+1].split(" ")
+            for x in range(0, len(pts)):
+                pts[x] = int(pts[x])
             matrix_mult(make_scale(pts[0], pts[1], pts[2]), transform)
         elif f[i] == "translate":
             print("translate")
             pts = f[i+1].split(" ")
+            for x in range(0, len(pts)):
+                pts[x] = int(pts[x])
             matrix_mult(make_translate(pts[0], pts[1], pts[2]), transform)
         elif f[i] == "rotate":
             print("rotate")
             pts = f[i+1].split(" ")
             if pts[0] == "x":
-                matrix_mult(make_rotX(pts[1]), transform)
+                matrix_mult(make_rotX(int(pts[1])), transform)
             elif pts[0] == "y":
-                matrix_mult(make_rotY(pts[1]), transform)
+                matrix_mult(make_rotY(int(pts[1])), transform)
             elif pts[0] == "z":
-                matrix_mult(make_rotZ(pts[1]), transform)
+                matrix_mult(make_rotZ(int(pts[1])), transform)
         elif f[i] == "apply":
-            print("apply")
             matrix_mult(transform, points)
         elif f[i] == "display":
-            print("display")
-            clear_screen(screen)
-            draw_lines(points, screen, color)
+            # clear_screen(screen)
             display(screen)
         elif f[i] == "save":
-            print("save")
             clear_screen(screen)
             draw_lines(points, screen, color)
-            save_extension(f[i+1])
+            save_extension(screen, f[i+1])
         elif f[i] == "quit":
             return
 
@@ -83,4 +83,5 @@ color = [ 0, 255, 0 ]
 edges = []
 transform = new_matrix()
 
-parse_file( 'script', edges, transform, screen, color )
+# parse_file( 'script', edges, transform, screen, color )
+parse_file( 'transformedShape', edges, transform, screen, color )
