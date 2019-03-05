@@ -77,11 +77,3 @@ def parse_file( fname, points, transform, screen, color ):
             save_extension(screen, f[i+1])
         elif f[i] == "quit":
             return
-
-screen = new_screen()
-color = [ 0, 255, 0 ]
-edges = []
-transform = new_matrix()
-
-# parse_file( 'script', edges, transform, screen, color )
-parse_file( 'transformedShape', edges, transform, screen, color )
